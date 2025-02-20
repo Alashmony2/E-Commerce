@@ -26,7 +26,7 @@ export default function Address() {
                 token: localStorage.getItem("token")
             },
             params: {
-                url: window.location.origin
+                url: "https://e-commercewebapp-beta.vercel.app/"
             }
         })
         setIsLoading(false)

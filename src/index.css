@@ -14,3 +14,9 @@
         }
     }
 }
+
+.active{
+    padding: .5rem;
+    border-radius: 1rem;
+    background-color: rgb(182, 181, 181);
+}

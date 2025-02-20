@@ -26,7 +26,7 @@ export default function NavbarComponent() {
   }
 
 
-  
+
 
   return (
     <Navbar
@@ -45,7 +45,7 @@ export default function NavbarComponent() {
         </NavbarBrand>
       </NavbarContent>
 
-      {isLoggedIn && 
+      {isLoggedIn &&
         <NavbarContent className="hidden sm:flex gap-4" justify="center">
           {menuItems.map((item, index) => (
             <NavbarItem key={index}>
@@ -61,13 +61,13 @@ export default function NavbarComponent() {
       }
 
       <NavbarContent justify="end">
-        {isLoggedIn ? 
+        {isLoggedIn ?
           <NavbarItem>
             <Button onPress={logout} color="danger" variant="flat">
               Sign Out
             </Button>
           </NavbarItem>
-          : 
+          :
           <>
             <NavbarItem className="flex">
               <NavLink to="/login">Login</NavLink>
