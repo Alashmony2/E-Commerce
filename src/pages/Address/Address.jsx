@@ -26,7 +26,7 @@ export default function Address() {
                 token: localStorage.getItem("token")
             },
             params: {
-                url: "http://localhost:5173"
+                url: window.location.origin
             }
         })
         setIsLoading(false)
