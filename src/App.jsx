@@ -4,7 +4,6 @@ import Home from './pages/Home/Home';
 import Login from './pages/Login/Login';
 import NotFound from './pages/NotFound/NotFound';
 import Register from './pages/Register/Register';
-import CounterContextProvider from "./contexts/CounterContext";
 import AutContextProvider from './contexts/autContext';
 import Cart from './pages/Cart/Cart';
 import Categories from './pages/Categories/Categories';

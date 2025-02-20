@@ -29,7 +29,7 @@ export default function Brands() {
         >
           <div
             className="relative p-6 bg-white rounded-lg shadow-lg w-[350px] md:w-[400px]"
-            onClick={(e) => e.stopPropagation()} 
+            onClick={(e) => e.stopPropagation()}
           >
             <button
               onClick={() => setSelectedBrand(null)}
@@ -42,7 +42,7 @@ export default function Brands() {
               <h3 className="text-2xl font-semibold text-[#3D8D7A] mb-2">
                 {selectedBrand.name}
               </h3>
-              
+
               <img
                 src={selectedBrand.image}
                 alt={selectedBrand.name}
