@@ -88,7 +88,7 @@ export default function NavbarComponent() {
               <NavLink
                 className="w-full"
                 color={"foreground"}
-                to={item === "Home" ? "/" : "/" + item.toLowerCase()}
+                to={item === "Home" ? "/" : "/" + item.toLowerCase().trim().replace(/\s+/g, "-").replace("whish-list", "whishlist")}
                 size="lg"
               >
                 {item}
