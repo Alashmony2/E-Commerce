@@ -17,16 +17,13 @@ export default function NavbarComponent() {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
   const { isLoggedIn, setIsLoggedIn } = useContext(autContext);
   const navigate = useNavigate();
-  const menuItems = ["Home", "Categories", "Brands", "Cart"];
+  const menuItems = ["Home", "Categories", "Brands", "Whish List" ,"Cart"];
 
   function logout() {
     setIsLoggedIn(false);
     localStorage.removeItem("token");
     navigate("/login");
   }
-
-
-
 
   return (
     <Navbar
@@ -51,7 +48,7 @@ export default function NavbarComponent() {
             <NavbarItem key={index}>
               <NavLink
                 color="foreground"
-                to={item === "Home" ? "/" : "/" + item.toLowerCase()}
+                to={item === "Home" ? "/" : "/" + item.toLowerCase().trim().replace(/\s+/g, "-").replace("whish-list", "whishlist")}
               >
                 {item}
               </NavLink>

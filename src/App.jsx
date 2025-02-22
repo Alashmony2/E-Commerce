@@ -17,6 +17,7 @@ import Orders from "./pages/Orders/Orders";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Provider } from "react-redux";
 import { store } from "./redux/store";
+import WhishList from "./pages/WhishList/WhishList";
 
 const queryclient = new QueryClient();
 
@@ -34,6 +35,7 @@ function App() {
       {path:'brands',element:<ProtctedRoute><Brands/></ProtctedRoute>},
       {path:'allorders',element:<ProtctedRoute><Orders/></ProtctedRoute>},
       {path:'address/:cartId',element:<ProtctedRoute><Address/></ProtctedRoute>},
+      {path:'whishlist',element:<ProtctedRoute><WhishList/></ProtctedRoute>},
       {path:'productDetails/:id',element:<ProtctedRoute><ProductDetails/></ProtctedRoute>},
       {path:'*',element:<NotFound/>}
     ]}

@@ -6,12 +6,14 @@ import Slider from "react-slick";
 import { Button } from "@heroui/react";
 import { addProductToCart } from "../../services/cartServices";
 import { formatCurrency } from "../../helpers/currencyHelpers";
+import { addProductToWhishlist } from "../../services/whishlistServices";
 
 
 export default function ProductDetails() {
   const [product, setProduct] = useState(null);
   const [isLoading, setIsLoading] = useState(true)
   const [AddToCartLoading, setAddToCartLoading] = useState(false)
+  const [isAddingToWishlist, setIsAddingToWishlist] = useState(false);
 
   const { id } = useParams();
 
@@ -103,7 +105,7 @@ export default function ProductDetails() {
                   </svg>
                   Add to Cart
                 </Button>
-                <button className="bg-gray-200 flex gap-2 items-center  text-gray-800 px-6 py-2 rounded-md hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2">
+                <Button isLoading={isAddingToWishlist} onPress={() => addProductToWhishlist(product._id, setIsAddingToWishlist)} className="bg-gray-200 flex gap-2 items-center  text-gray-800 px-6 py-2 rounded-md hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
@@ -119,7 +121,7 @@ export default function ProductDetails() {
                     />
                   </svg>
                   Wishlist
-                </button>
+                </Button>
               </div>
             </div>
         </div>
