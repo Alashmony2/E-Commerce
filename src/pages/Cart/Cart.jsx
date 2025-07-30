@@ -1,10 +1,11 @@
 import axios from "axios"
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import CartProduct from "../../components/CartProduct/CartProduct";
 import { formatCurrency } from "../../helpers/currencyHelpers";
 import LoadingScreen from './../../components/LoadingScreen/LoadingScreen';
 import { Button } from "@heroui/react";
 import { Link } from "react-router-dom";
+import { counterContext } from "../../contexts/counterContext";
 
 export default function Cart() {
 
@@ -13,6 +14,7 @@ export default function Cart() {
   const [cartId, setCartId] = useState(null)
   const [numOfCartItems, setNumOfCartItems] = useState(0)
   const [cartData, setCartData] = useState(null)
+  const { setCounter } = useContext(counterContext);
 
   useEffect(() => {
     getUserCart()
@@ -29,6 +31,8 @@ export default function Cart() {
     setCartId(data.cartId);
     setNumOfCartItems(data.numOfCartItems);
     setCartData(data.data);
+    // Sync counter context
+    setCounter(data.numOfCartItems || 0);
   }
 
   async function removeSpecificCartItem(productId, setIsLoading) {
@@ -42,6 +46,8 @@ export default function Cart() {
     setCartData(data.data);
     setNumOfCartItems(data.numOfCartItems);
     setCartId(data.cartId);
+    // Sync counter context
+    setCounter(data.numOfCartItems || 0);
   }
 
   async function clearCart() {
@@ -55,6 +61,8 @@ export default function Cart() {
     setCartData(null);
     setNumOfCartItems(0);
     setCartId(null);
+    // Sync counter context
+    setCounter(0);
   }
 
   async function updateProductCount(productId, count, setIncrementIsLoading, setDecrementIsLoading, currentCount) {

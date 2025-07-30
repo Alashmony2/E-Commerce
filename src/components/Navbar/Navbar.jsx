@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { autContext } from "../../contexts/autContext";
+import { counterContext } from "../../contexts/counterContext";
 import {
   Navbar,
   NavbarBrand,
@@ -10,14 +11,16 @@ import {
   NavbarMenu,
   NavbarMenuItem,
   Button,
+  Badge,
 } from "@heroui/react";
 import { NavLink } from "react-router-dom";
 
 export default function NavbarComponent() {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
   const { isLoggedIn, setIsLoggedIn } = useContext(autContext);
+  const { counter } = useContext(counterContext);
   const navigate = useNavigate();
-  const menuItems = ["Home", "Categories", "Brands", "Whish List" ,"Cart"];
+  const menuItems = ["Home", "Categories", "Brands", "Whish List"];
 
   function logout() {
     setIsLoggedIn(false);
@@ -59,11 +62,28 @@ export default function NavbarComponent() {
 
       <NavbarContent justify="end">
         {isLoggedIn ?
-          <NavbarItem>
-            <Button onPress={logout} color="danger" variant="flat">
-              Sign Out
-            </Button>
-          </NavbarItem>
+          <>
+            <NavbarItem>
+              <Link 
+                to="/cart" 
+                className="flex items-center gap-1 hover:opacity-80 transition-opacity"
+              >
+                <Badge 
+                  content={counter} 
+                  color="warning" 
+                  isInvisible={counter === 0}
+                  className="text-white"
+                >
+                  <i className="fa-solid fa-cart-shopping text-blue-600 text-lg"></i>
+                </Badge>
+              </Link>
+            </NavbarItem>
+            <NavbarItem>
+              <Button onPress={logout} color="danger" variant="flat">
+                Sign Out
+              </Button>
+            </NavbarItem>
+          </>
           :
           <>
             <NavbarItem className="flex">
@@ -95,6 +115,24 @@ export default function NavbarComponent() {
               </NavLink>
             </NavbarMenuItem>
           ))}
+          <NavbarMenuItem
+            onClick={() => setIsMenuOpen(false)}
+            key="cart"
+          >
+            <Link
+              to="/cart"
+              className="w-full flex items-center gap-2 hover:opacity-80 transition-opacity"
+            >
+              <Badge 
+                content={counter} 
+                color="warning" 
+                isInvisible={counter === 0}
+                className="text-white"
+              >
+                <i className="fa-solid fa-cart-shopping text-blue-600 text-lg"></i>
+              </Badge>
+            </Link>
+          </NavbarMenuItem>
         </NavbarMenu>
       )}
     </Navbar>

@@ -5,6 +5,7 @@ import Login from './pages/Login/Login';
 import NotFound from './pages/NotFound/NotFound';
 import Register from './pages/Register/Register';
 import AutContextProvider from './contexts/autContext';
+import CounterContextProvider from './contexts/counterContext';
 import Cart from './pages/Cart/Cart';
 import Categories from './pages/Categories/Categories';
 import Brands from './pages/Brands/Brands';
@@ -47,8 +48,10 @@ function App() {
     <Provider store={store}>
       <QueryClientProvider client={queryclient} >
         <AutContextProvider>
+          <CounterContextProvider>
             <RouterProvider router={router}/>
             <ToastContainer/>
+          </CounterContextProvider>
         </AutContextProvider>
       </QueryClientProvider>
     </Provider>

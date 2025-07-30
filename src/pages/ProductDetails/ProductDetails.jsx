@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { useParams } from "react-router-dom";
 import LoadingScreen from './../../components/LoadingScreen/LoadingScreen';
 import Slider from "react-slick";
@@ -7,6 +7,7 @@ import { Button } from "@heroui/react";
 import { addProductToCart } from "../../services/cartServices";
 import { formatCurrency } from "../../helpers/currencyHelpers";
 import { addProductToWhishlist } from "../../services/whishlistServices";
+import { counterContext } from "../../contexts/counterContext";
 
 
 export default function ProductDetails() {
@@ -14,6 +15,7 @@ export default function ProductDetails() {
   const [isLoading, setIsLoading] = useState(true)
   const [AddToCartLoading, setAddToCartLoading] = useState(false)
   const [isAddingToWishlist, setIsAddingToWishlist] = useState(false);
+  const { setCounter } = useContext(counterContext);
 
   const { id } = useParams();
 
@@ -88,7 +90,7 @@ export default function ProductDetails() {
                 {product?.description}
               </p>
               <div className="flex space-x-4 mb-6">
-                <Button isLoading={AddToCartLoading} onPress={() => addProductToCart(product?._id, setAddToCartLoading)} className="bg-indigo-600 flex gap-2 items-center text-white px-6 py-2 rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
+                <Button isLoading={AddToCartLoading} onPress={() => addProductToCart(product?._id, setAddToCartLoading, setCounter)} className="bg-indigo-600 flex gap-2 items-center text-white px-6 py-2 rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
