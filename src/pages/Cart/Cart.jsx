@@ -96,13 +96,13 @@ export default function Cart() {
   }
 
   if (numOfCartItems === 0) {
-    return <h1 className="text-4xl font-bold text-center py-10">Your cart is empty</h1>
+    return <h1 className="text-4xl font-bold text-center py-10 text-gray-800 dark:text-white">Your cart is empty</h1>
   }
 
   return (
     <>
       <div className="flex justify-between">
-        <h1 className="mb-10 text-center text-2xl font-bold">Cart Items({numOfCartItems})</h1>
+        <h1 className="mb-10 text-center text-2xl font-bold text-gray-800 dark:text-white">Cart Items({numOfCartItems})</h1>
         <Button isLoading={clearCartLoading} onPress={clearCart} variant="ghost" color="danger">Clear</Button>
       </div>
       <div className=" justify-center px-6 md:flex md:space-x-6 xl:px-0">
@@ -115,24 +115,24 @@ export default function Cart() {
 
         </div>
         {/* Sub total */}
-        <div className="sticky top-20 mt-6 h-full rounded-lg border bg-white p-6 shadow-md md:mt-0 md:w-1/3">
+        <div className="sticky top-20 mt-6 h-full rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 p-6 shadow-md md:mt-0 md:w-1/3">
           <div className="mb-2 flex justify-between">
-            <p className="text-gray-700">Subtotal</p>
-            <p className="text-gray-700">${formatCurrency(cartData?.totalCartPrice)}</p>
+            <p className="text-gray-700 dark:text-gray-300">Subtotal</p>
+            <p className="text-gray-700 dark:text-gray-300">${formatCurrency(cartData?.totalCartPrice)}</p>
           </div>
           <div className="flex justify-between">
-            <p className="text-gray-700">Shipping</p>
-            <p className="text-gray-700">$4.99</p>
+            <p className="text-gray-700 dark:text-gray-300">Shipping</p>
+            <p className="text-gray-700 dark:text-gray-300">$4.99</p>
           </div>
-          <hr className="my-4" />
+          <hr className="my-4 border-gray-200 dark:border-gray-600" />
           <div className="flex justify-between">
-            <p className="text-lg font-bold">Total</p>
+            <p className="text-lg font-bold text-gray-800 dark:text-white">Total</p>
             <div>
-              <p className="mb-1 text-lg font-bold">${formatCurrency(cartData?.totalCartPrice + 4.99)}</p>
-              <p className="text-sm text-gray-700">including VAT</p>
+              <p className="mb-1 text-lg font-bold text-gray-800 dark:text-white">${formatCurrency(cartData?.totalCartPrice + 4.99)}</p>
+              <p className="text-sm text-gray-700 dark:text-gray-400">including VAT</p>
             </div>
           </div>
-          <Link to={"/address/" + cartId} className="mt-6 w-full block text-center rounded-md bg-blue-500 py-1.5 font-medium text-blue-50 hover:bg-blue-600">Check out</Link>
+          <Link to={"/address/" + cartId} className="mt-6 w-full block text-center rounded-md bg-blue-500 dark:bg-blue-600 py-1.5 font-medium text-blue-50 hover:bg-blue-600 dark:hover:bg-blue-700 transition-colors">Check out</Link>
         </div>
       </div>
     </>

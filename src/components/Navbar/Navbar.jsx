@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { autContext } from "../../contexts/autContext";
 import { counterContext } from "../../contexts/counterContext";
+import { useTheme } from "../../contexts/themeContext";
 import {
   Navbar,
   NavbarBrand,
@@ -19,6 +20,7 @@ export default function NavbarComponent() {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
   const { isLoggedIn, setIsLoggedIn } = useContext(autContext);
   const { counter } = useContext(counterContext);
+  const { isDarkMode, toggleTheme } = useTheme();
   const navigate = useNavigate();
   const menuItems = ["Home", "Categories", "Brands", "Whish List"];
 
@@ -41,7 +43,7 @@ export default function NavbarComponent() {
           className="sm:hidden"
         />
         <NavbarBrand>
-          <p className="font-bold text-inherit"><span><i className="fa-solid fa-cart-shopping pr-2"></i></span>FreshCart</p>
+          <p className="font-bold text-inherit dark:text-white"><span><i className="fa-solid fa-cart-shopping pr-2 text-blue-600 dark:text-blue-400"></i></span>FreshCart</p>
         </NavbarBrand>
       </NavbarContent>
 
@@ -74,9 +76,24 @@ export default function NavbarComponent() {
                   isInvisible={counter === 0}
                   className="text-white"
                 >
-                  <i className="fa-solid fa-cart-shopping text-blue-600 text-lg"></i>
+                  <i className="fa-solid fa-cart-shopping text-blue-600 dark:text-blue-400 text-lg"></i>
                 </Badge>
               </Link>
+            </NavbarItem>
+            <NavbarItem>
+              <Button 
+                isIconOnly
+                variant="light"
+                onPress={toggleTheme}
+                className="text-default-500 hover:text-default-700 dark:text-default-400 dark:hover:text-default-200"
+                aria-label="Toggle theme"
+              >
+                {isDarkMode ? (
+                  <i className="fa-solid fa-sun text-lg"></i>
+                ) : (
+                  <i className="fa-solid fa-moon text-lg"></i>
+                )}
+              </Button>
             </NavbarItem>
             <NavbarItem>
               <Button onPress={logout} color="danger" variant="flat">
@@ -86,12 +103,27 @@ export default function NavbarComponent() {
           </>
           :
           <>
+            <NavbarItem>
+              <Button 
+                isIconOnly
+                variant="light"
+                onPress={toggleTheme}
+                className="text-default-500 hover:text-default-700 dark:text-default-400 dark:hover:text-default-200"
+                aria-label="Toggle theme"
+              >
+                {isDarkMode ? (
+                  <i className="fa-solid fa-sun text-lg"></i>
+                ) : (
+                  <i className="fa-solid fa-moon text-lg"></i>
+                )}
+              </Button>
+            </NavbarItem>
             <NavbarItem className="flex">
-              <NavLink to="/login">Login</NavLink>
+              <NavLink to="/login" className="text-foreground dark:text-white">Login</NavLink>
             </NavbarItem>
             <NavbarItem>
               <Button color="primary" variant="flat">
-                <NavLink to="/register">Sign Up</NavLink>
+                <NavLink to="/register" className="text-primary dark:text-primary-400">Sign Up</NavLink>
               </Button>
             </NavbarItem>
           </>
@@ -129,7 +161,7 @@ export default function NavbarComponent() {
                 isInvisible={counter === 0}
                 className="text-white"
               >
-                <i className="fa-solid fa-cart-shopping text-blue-600 text-lg"></i>
+                <i className="fa-solid fa-cart-shopping text-blue-600 dark:text-blue-400 text-lg"></i>
               </Badge>
             </Link>
           </NavbarMenuItem>

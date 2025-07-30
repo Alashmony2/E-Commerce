@@ -46,7 +46,7 @@ export default function Brands() {
               <img
                 src={selectedBrand.image}
                 alt={selectedBrand.name}
-                className="w-40 h-40 object-cover mt-3"
+                className="w-full  object-cover mt-3"
               />
               <button
                 onClick={() => setSelectedBrand(null)}
@@ -69,7 +69,7 @@ export default function Brands() {
             className="border border-gray-300 m-2 rounded-md hover:shadow-2xl hover:shadow-[#AAB99A] transition-all duration-500 cursor-pointer"
             onClick={() => setSelectedBrand(brand)}
           >
-            <img src={brand.image} className="object-cover" alt={brand.name} />
+            <img src={brand.image} className="object-cover w-full" alt={brand.name} />
             <h3 className="text-center p-2 text-xl font-semibold text-[#3D8D7A] m-2">
               {brand.name}
             </h3>
