@@ -2,7 +2,7 @@ import { Button } from "@heroui/react";
 import React, { useState } from "react";
 import { addProductToCart } from "../../services/cartServices";
 
-export default function WishlistProduct({ product, removeWishlistProduct }) {
+export default function WishlistProduct({ product, removeWishlistProduct, handleAddToCart }) {
     const [IsLoading, setIsLoading] = useState(false)
     const [IsLoadingDelete, setIsLoadingDelete] = useState(false)
     return (
@@ -32,7 +32,11 @@ export default function WishlistProduct({ product, removeWishlistProduct }) {
             <div className="space-y-9 mx-auto space-x-10 sm:space-x-0">
                 <Button
                     isLoading={IsLoading}
-                    onPress={() => addProductToCart(product?._id,setIsLoading)} 
+                    onPress={async () => {
+                        setIsLoading(true);
+                        await handleAddToCart(product?._id);
+                        setIsLoading(false);
+                    }} 
                     className="cursor-pointer hover:text-blue-700 duration-400"
                 ><i className="fa-solid fa-cart-shopping fa-beat"></i></Button>
                 <Button

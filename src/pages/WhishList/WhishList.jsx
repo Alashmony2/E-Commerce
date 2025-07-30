@@ -1,13 +1,15 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import WishlistProduct from "./../../components/WishlistProduct/WishlistProduct";
 import { addProductToCart } from "../../services/cartServices";
 import LoadingScreen from './../../components/LoadingScreen/LoadingScreen';
+import { counterContext } from "../../contexts/counterContext";
 
 export default function Wishlist() {
     const [isLoading, setIsLoading] = useState(false);
     const [wishlistData, setWishlistData] = useState([]);
     const [numOfWishlistItems, setNumOfWishlistItems] = useState(0);
+    const { setCounter } = useContext(counterContext);
 
     useEffect(() => {
         getUserWishlist();
@@ -32,7 +34,7 @@ export default function Wishlist() {
     }
 
     async function handleAddToCart(productId) {
-            await addProductToCart(productId);
+            await addProductToCart(productId, () => {}, setCounter);
             removeWishlistProduct(productId); 
     }
 
