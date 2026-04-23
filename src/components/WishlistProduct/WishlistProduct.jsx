@@ -17,13 +17,13 @@ export default function WishlistProduct({ product, removeWishlistProduct, handle
             <div className="grid grid-cols-1 md:grid-cols-4 w-full">
                 <div className="md:col-span-2">
                     <div className="flex flex-col max-[500px]:items-center gap-3">
-                        <h6 className="font-semibold text-base leading-7 text-black">
+                        <h6 className="font-semibold text-base leading-7 text-black dark:text-white">
                             {product?.title || "Unknown Product"}
                         </h6>
-                        <h6 className="font-normal text-base leading-7 text-gray-500">
+                        <h6 className="font-normal text-base leading-7 text-gray-500 dark:text-gray-400">
                             {product?.category?.name || "No Category"}
                         </h6>
-                        <h6 className="font-medium text-base leading-7 text-gray-600 transition-all duration-300 group-hover:text-blue-600">
+                        <h6 className="font-medium text-base leading-7 text-gray-600 transition-all duration-300 group-hover:text-blue-600 dark:text-gray-400 dark:group-hover:text-blue-500">
                             ${product?.price || "0.00"}
                         </h6>
                     </div>

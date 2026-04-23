@@ -50,7 +50,7 @@ export default function Wishlist() {
         <div className="max-w-7xl px-4 md:px-5 mx-auto ">
             <div className="lg:pr-8 pb-8 max-xl:max-w-3xl max-xl:mx-auto">
                 <div className="pb-8 border-b border-gray-300">
-                    <h2 className="font-manrope font-bold text-3xl leading-10 text-black">
+                    <h2 className="font-manrope font-bold text-3xl leading-10 text-black dark:text-white">
                         Wishlist({numOfWishlistItems})
                     </h2>
                 </div>
